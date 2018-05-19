@@ -22,7 +22,7 @@ public class ProductServiceTest {
 
 	@Test
 	public void testCreateProduct() {
-		Product product = productService.createProduct(new ProductBean("TestProduct1", "AAAA-1111", 10, Category.A));
+		Product product = productService.createProduct(new ProductBean("TestProduct1", "CCCC-1111", 10, Category.A));
 		Product resultProduct = productService.getProductById(product.getProductId());
 		assertThat(product.getProductId()).isEqualTo(resultProduct.getProductId());
 	}
@@ -30,10 +30,10 @@ public class ProductServiceTest {
 	@Test
 	public void testCreateUpdate() {
 
-		Product product = productService.createProduct(new ProductBean("TestProduct2", "BBBB-2222", 20, Category.A));
+		Product product = productService.createProduct(new ProductBean("TestProduct2", "DDDD-2222", 20, Category.A));
 		Product updatedProduct = productService
-				.updateProduct(new ProductBean("TestProduct2", "BBBB-5555", 30, Category.A), product.getProductId());
-		assertThat("BBBB-5555".equals(updatedProduct.getBarCodeId()));
+				.updateProduct(new ProductBean("TestProduct2", "EEEE-2222", 30, Category.A), product.getProductId());
+		assertThat("EEEE-2222".equals(updatedProduct.getBarCodeId()));
 	}
 
 	@Test
