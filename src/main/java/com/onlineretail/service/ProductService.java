@@ -24,7 +24,7 @@ public class ProductService {
 	 */
 	public Product createProduct(ProductBean productBean) {
 
-		findProductByBarCode(productBean.getBarCodeId());
+		checkProductByBarCode(productBean.getBarCodeId());
 		Product product = new Product();
 		product.setBarCodeId(productBean.getBarCodeId());
 		product.setPrice(productBean.getPrice());
@@ -41,7 +41,7 @@ public class ProductService {
 	 * @param id
 	 */
 	public void deleteProduct(Long id) {
-		findProductByID(id);
+		checkProductByID(id);
 		productRepository.deleteById(id);
 	}
 
@@ -60,14 +60,12 @@ public class ProductService {
 	 * @return
 	 */
 	public Product getProductById(Long id) {
-		findProductByID(id);
-
 		Optional<Product> optProduct = productRepository.findById(id);
-		if(!optProduct.isPresent()) {
+		if (!optProduct.isPresent()) {
 			throw new CustomException(
 					"Problem with input data: Product ID  " + id + " Product ID does not exists in Product");
 		}
-		
+
 		return optProduct.get();
 	}
 
@@ -78,21 +76,19 @@ public class ProductService {
 	 * @return
 	 */
 	public Product updateProduct(ProductBean productBean, Long id) {
-		findProductByID(id);
 		Optional<Product> optProduct = productRepository.findById(id);
-		
-		if(!optProduct.isPresent()) {
+		if (!optProduct.isPresent()) {
 			throw new CustomException(
 					"Problem with input data: Product ID  " + id + " Product ID does not exists in Product");
 		}
-		
+
 		Product product = optProduct.get();
 		product.setBarCodeId(productBean.getBarCodeId());
 		product.setPrice(productBean.getPrice());
 		Product resultProduct = productRepository.save(product);
 		product.setName(productBean.getName());
 		product.setCategory(productBean.getCategory());
-		
+
 		return resultProduct;
 	}
 
@@ -100,7 +96,7 @@ public class ProductService {
 	 * 
 	 * @param barCodeId
 	 */
-	private void findProductByBarCode(String barCodeId) {
+	private void checkProductByBarCode(String barCodeId) {
 		List<Product> productsByBarCodeID = productRepository.findProductByBarCodeId(barCodeId);
 		if (null != productsByBarCodeID && !productsByBarCodeID.isEmpty()) {
 			throw new CustomException(
@@ -112,17 +108,11 @@ public class ProductService {
 	 * 
 	 * @param id
 	 */
-	private void findProductByID(Long id) {
+	private void checkProductByID(Long id) {
 		Optional<Product> optProduct = productRepository.findById(id);
-		
-		if(!optProduct.isPresent()) {
+		if (!optProduct.isPresent()) {
 			throw new CustomException(
 					"Problem with input data: Product ID  " + id + " Product ID does not exists in Product");
-		}
-		
-		Product product = optProduct.get();
-		if (product == null) {
-			throw new CustomException("Product with id " + id + " not found");
 		}
 	}
 

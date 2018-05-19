@@ -10,6 +10,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import com.onlineretail.beans.ProductBean;
 import com.onlineretail.dao.entity.Product;
+import com.onlineretail.exception.CustomException;
 import com.onlineretail.service.ProductService;
 import com.onlineretail.util.Category;
 
@@ -28,7 +29,7 @@ public class ProductServiceTest {
 	}
 
 	@Test
-	public void testCreateUpdate() {
+	public void testUpdateProduct() {
 
 		Product product = productService.createProduct(new ProductBean("TestProduct2", "DDDD-2222", 20, Category.A));
 		Product updatedProduct = productService
@@ -37,11 +38,16 @@ public class ProductServiceTest {
 	}
 
 	@Test
-	public void testCreateDelete() {
+	public void testDeleteProduct() {
 		Product createdProduct = productService
 				.createProduct(new ProductBean("TestProduct3", "CCCC-5555", 20, Category.A));
 		productService.deleteProduct(createdProduct.getProductId());
-		Product deletedProduct = productService.getProductById(createdProduct.getProductId());
+		Product deletedProduct = null;
+		try {
+			deletedProduct = productService.getProductById(createdProduct.getProductId());
+		} catch (CustomException ce) {
+
+		}
 		assertThat(deletedProduct).isNull();
 	}
 
