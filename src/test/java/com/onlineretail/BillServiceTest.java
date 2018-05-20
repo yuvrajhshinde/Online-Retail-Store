@@ -55,7 +55,7 @@ public class BillServiceTest {
 		
 		billInfoBean.setAddProducts(productsToBeAdded);
 		billInfoBean.setDeleteProducts(productsToBeRemoved);
-		billService.updateBillData(billInfoBean, billId);
+		billService.updateBill(billInfoBean, billId);
 		Bill retrieveUpdatedBill = billService.getBillById(createdBill.getBillId());
 		assertThat(retrieveUpdatedBill.getTotalProduct()).isEqualTo(3);
 	}
@@ -69,7 +69,7 @@ public class BillServiceTest {
 		List<BillBean> productsToBeAdded = new ArrayList<BillBean>();
 		productsToBeAdded.add(new BillBean("AAAA-1111", 2));
 		billInfoBean.setAddProducts(productsToBeAdded);
-		billService.updateBillData(billInfoBean, billId);
+		billService.updateBill(billInfoBean, billId);
 		Bill updatedBill = billService.getBillById(billId);
 		assertThat(updatedBill.getTotalValue() == 44);
 	}
@@ -83,7 +83,7 @@ public class BillServiceTest {
 		List<BillBean> productsToBeAdded = new ArrayList<BillBean>();
 		productsToBeAdded.add(new BillBean("BBBB-2222", 2));
 		billInfoBean.setAddProducts(productsToBeAdded);
-		billService.updateBillData(billInfoBean, billId);
+		billService.updateBill(billInfoBean, billId);
 		Bill updatedBill = billService.getBillById(billId);
 		assertThat(updatedBill.getTotalValue() == 48);
 	}
@@ -97,7 +97,7 @@ public class BillServiceTest {
 		List<BillBean> productsToBeAdded = new ArrayList<BillBean>();
 		productsToBeAdded.add(new BillBean("CCCC-3333", 2));
 		billInfoBean.setAddProducts(productsToBeAdded);
-		billService.updateBillData(billInfoBean, billId);
+		billService.updateBill(billInfoBean, billId);
 		Bill updatedBill = billService.getBillById(billId);
 		assertThat(updatedBill.getTotalValue() == 40);
 	}

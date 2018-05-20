@@ -9,6 +9,9 @@ public class BillInfoBean {
 	private List<BillBean> addProducts;
 	private List<BillBean> deleteProducts;
 
+	public BillInfoBean() {
+		
+	}
 	public List<BillBean> getAddProducts() {
 		return addProducts;
 	}

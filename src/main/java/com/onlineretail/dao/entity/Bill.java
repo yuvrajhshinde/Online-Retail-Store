@@ -24,7 +24,7 @@ public class Bill {
 	private double totalValue;
 
 	@OneToMany(cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
-	private List<Product> productList;
+	private List<ProductQty> productQtyList;
 
 	public Bill() {
 		super();
@@ -78,12 +78,12 @@ public class Bill {
 		this.totalValue = totalValue;
 	}
 
-	public List<Product> getProductList() {
-		return productList;
+	public List<ProductQty> getProductQtyList() {
+		return productQtyList;
 	}
 
-	public void setProductList(List<Product> productList) {
-		this.productList = productList;
+	public void setProductQtyList(List<ProductQty> productQtyList) {
+		this.productQtyList = productQtyList;
 	}
 
 }

@@ -9,6 +9,10 @@ public class BillBean {
 
 	private int quantity;
 
+	public BillBean() {
+		
+	}
+	
 	public BillBean(String barCodeId, int quantity) {
 		this.barCodeId = barCodeId;
 		this.quantity = quantity;

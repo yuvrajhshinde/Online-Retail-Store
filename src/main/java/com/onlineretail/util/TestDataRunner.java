@@ -11,6 +11,7 @@ import com.onlineretail.beans.BillBean;
 import com.onlineretail.beans.BillInfoBean;
 import com.onlineretail.dao.entity.Bill;
 import com.onlineretail.dao.entity.Product;
+import com.onlineretail.dao.repository.BillRepository;
 import com.onlineretail.dao.repository.ProductRepository;
 import com.onlineretail.service.BillService;
 
@@ -22,6 +23,9 @@ public class TestDataRunner implements CommandLineRunner {
 
 	@Autowired
 	private ProductRepository productRepository;
+	
+	@Autowired
+	private BillRepository billRepository;
 
 	public TestDataRunner() {
 		// TODO Auto-generated constructor stub
@@ -31,6 +35,14 @@ public class TestDataRunner implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 		initProductData();
 		initBillData();
+		
+	/*	Product p = new Product("Test1", "AAAA-5555", 10, Category.A);
+		List<Product> pList = new ArrayList();
+		pList.add(p);
+		Bill b = new Bill(0, 0, 0, 0);
+		b.setProductList(pList);
+		billRepository.save(b);
+		*/
 
 	}
 
@@ -51,7 +63,7 @@ public class TestDataRunner implements CommandLineRunner {
 		productsToBeAdded.add(new BillBean("AAAA-0003", 2));
 		billInfoBean.setAddProducts(productsToBeAdded);
 		billInfoBean.setDeleteProducts(productsToBeRemoved);
-		billService.updateBillData(billInfoBean, billId);
+		billService.updateBill(billInfoBean, billId);
 
 	}
 }

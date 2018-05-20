@@ -7,6 +7,10 @@ public class ProductQtyBean {
 	private long productQty;
 
 	private Product product;
+	
+	public ProductQtyBean() {
+		
+	}
 
 	public ProductQtyBean(Product product, int productQty) {
 		super();

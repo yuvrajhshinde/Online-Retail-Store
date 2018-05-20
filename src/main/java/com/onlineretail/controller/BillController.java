@@ -63,7 +63,7 @@ public class BillController {
 			@ApiResponse(code = 404, message = "Validation error") })
 	@RequestMapping(value = "/bills/{id}", method = RequestMethod.PUT)
 	public ResponseEntity<Bill> updateBill(@RequestBody BillInfoBean billInfoBean, @PathVariable Long id) {
-		Bill updated = billService.updateBillData(billInfoBean, id);
+		Bill updated = billService.updateBill(billInfoBean, id);
 		return new ResponseEntity<>(updated, HttpStatus.OK);
 	}
 
