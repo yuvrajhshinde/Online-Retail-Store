@@ -67,7 +67,7 @@ public class ProductController {
 		return new ResponseEntity<>(productService.getAllProducts(), HttpStatus.OK);
 	}
 
-	@ApiOperation(value = "View Product", response = Product.class, produces = "application/json")
+	@ApiOperation(value = "View Product By Product Id", response = Product.class, produces = "application/json")
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "Successfully retrieved product details"),
 			@ApiResponse(code = 401, message = "Bad Credentials"),
 			@ApiResponse(code = 404, message = "Produt does not exist") })

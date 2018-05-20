@@ -34,7 +34,7 @@ public class BillController {
 		return new ResponseEntity<>(bill, new HttpHeaders(), HttpStatus.CREATED);
 	}
 
-	@ApiOperation(produces = "application/json", value = "Delete Bill")
+	@ApiOperation(produces = "application/json", value = "Delete Bill by Bill Id")
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "Status of request"),
 			@ApiResponse(code = 404, message = "Bill does not exist") })
 	@RequestMapping(value = "/bills/{id}", method = RequestMethod.DELETE)
@@ -43,14 +43,14 @@ public class BillController {
 		return new ResponseEntity<>("{\"status\": \"success\"}", HttpStatus.OK);
 	}
 
-	@ApiOperation(produces = "application/json", value = "fetch bill data ")
+	@ApiOperation(produces = "application/json", value = "View all bills ")
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "Successfully retrieved list") })
 	@RequestMapping(value = "/bills", method = RequestMethod.GET)
 	public ResponseEntity<Iterable<Bill>> getAllBills() {
 		return new ResponseEntity<>(billService.getAllBills(), HttpStatus.OK);
 	}
 
-	@ApiOperation(produces = "application/json", value = "find Bill by Id")
+	@ApiOperation(produces = "application/json", value = "View Bill by Bill Id")
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "Successfully retrieved Bill details"),
 			@ApiResponse(code = 404, message = "Bill Not Found") })
 	@RequestMapping(value = "/bills/{id}", method = RequestMethod.GET)
@@ -58,7 +58,7 @@ public class BillController {
 		return new ResponseEntity<>(billService.getBillById(id), HttpStatus.OK);
 	}
 
-	@ApiOperation(produces = "application/json", value = "Update products from Bill")
+	@ApiOperation(produces = "application/json", value = "Update(Insert & Delete) products from Bill")
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "Bill details"),
 			@ApiResponse(code = 404, message = "Validation error") })
 	@RequestMapping(value = "/bills/{id}", method = RequestMethod.PUT)
